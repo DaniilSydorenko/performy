@@ -1,0 +1,12 @@
+{
+  "name": "performy",
+  "version": "1.0.0",
+  "description": "Measures time of passed functions with their arguments and returns the time of function working in milliseconds.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
