@@ -15,16 +15,28 @@ class Performy {
         );
     }
 
-    public executeOnce (func: any, params: Array<any>): void {
+    private _runFunction (func: any, params: Array<any>): number {
         let start = performance.now();
         func.apply(null, params);
         let end = performance.now();
 
-        this._log(func.name, end - start);
+        return end - start;
+    }
+
+    public executeOnce (func: any, params: Array<any>): void {
+        let result = this._runFunction(func, params);
+        this._log(func.name, result);
     }
 
     public executeAvg (func, params, avg = 10): void {
+        let accum = 0;
+        for (let i = 0; i <= avg; i++) {
+            accum += this._runFunction(func, params);
+        }
 
+        let result: number = accum / avg;
+
+        this._log(func.name, result);
     }
 }
 
