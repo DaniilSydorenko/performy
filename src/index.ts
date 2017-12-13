@@ -1,13 +1,17 @@
 class Performy {
     constructor() {
+        console.log('asd');
         if (Performance.prototype.now) {
             throw new Error('Probably you use and old browser')
         }
     }
 
     private _log(fname: string, time: number) {
-        console.log(`%c The function fulfilled with a time of 10 seconds ${100}`, 'color: #005cc5');
-        console.log(`%c The function fulfilled with a time of 10 seconds `, `
+        console.log(`%c The function ${fname} fulfilled with a time of ${time} seconds `, 'color: #d65a5a');
+
+        console.log(`%c The function ${fname} fulfilled with a time of ${time} seconds `, 'color: #005cc5');
+
+        console.log(`%c The function ${fname} fulfilled with a time of ${time} seconds `, `
             background-color: rgba(212,221,228,.25);
             border: solid rgba(212,221,228,.25);
             font-size: 12px;
@@ -28,7 +32,7 @@ class Performy {
         this._log(func.name, result);
     }
 
-    public executeAvg (func, params, avg = 10): void {
+    public executeAvg (func: any, params: Array<any>, avg = 10): void {
         let accum = 0;
         for (let i = 0; i <= avg; i++) {
             accum += this._runFunction(func, params);
