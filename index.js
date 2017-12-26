@@ -82,66 +82,74 @@ var _createClass = function () { function defineProperties(target, props) { for 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var Performy = function () {
+
+  // TODO compareOnce, compareAvg
+  // TODO now() ----- now()
+
   function Performy() {
     _classCallCheck(this, Performy);
+
+    this.timer = null;
+
+    if (Performance.prototype.now) {
+      this.timer = performance;
+    } else if (Date.now) {
+      this.timer = Date;
+    } else {
+      throw new Error('Module Performy should be executed only in the browser.');
+    }
   }
+
+  /* eslint-disable */
 
   _createClass(Performy, [{
     key: '_log',
-
-
-    // executeOnce, executeAvg
-    // compareOnce, compareAvg
-    // rest operator
-
-    // constructor() {
-    //   if (Performance.prototype.now) {
-    //       throw new Error('Probably you use and old browser')
-    //   }
-    // }
-
     value: function _log(fname, time) {
-      console.log('%c The function ' + fname + ' fulfilled with a time of ' + time + ' seconds ', 'color: #d65a5a');
-
-      console.log('%c The function ' + fname + ' fulfilled with a time of ' + time + ' seconds ', 'color: #005cc5');
-
-      console.log('%c The function ' + fname + ' fulfilled with a time of ' + time + ' seconds ', '\n            background-color: rgba(212,221,228,.25);\n            border: solid rgba(212,221,228,.25);\n            font-size: 12px;\n            color: #6f42c1');
+      console.log('%c Performance test started', 'color: #d65a5a; font-style: italic;');
+      console.log('%c The function [' + fname + '] fulfilled in ' + time.toFixed(4) + ' ms ', 'color: #005cc5');
+      console.log('%c Performance test completed', 'color: #d65a5a; font-style: italic;');
     }
   }, {
     key: '_runFunction',
     value: function _runFunction(func, params) {
-      var start = performance.now();
+      var start = this.timer.now();
       func.apply(null, params);
-      var end = performance.now();
+      var end = this.timer.now();
 
       return end - start;
     }
   }, {
     key: 'executeOnce',
-    value: function executeOnce(func, params) {
-      var result = this._runFunction(func, params);
-      this._log(func.name, result);
+    value: function executeOnce(func) {
+      for (var _len = arguments.length, params = Array(_len > 1 ? _len - 1 : 0), _key = 1; _key < _len; _key++) {
+        params[_key - 1] = arguments[_key];
+      }
+
+      this._log(func.name, this._runFunction(func, params));
     }
   }, {
     key: 'executeAvg',
-    value: function executeAvg(func, params) {
-      var avg = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 10;
+    value: function executeAvg(func) {
+      var avg = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 10;
 
-      var accum = 0;
-      for (var i = 0; i <= avg; i++) {
-        accum += this._runFunction(func, params);
+      var accumulator = 0;
+
+      for (var _len2 = arguments.length, params = Array(_len2 > 2 ? _len2 - 2 : 0), _key2 = 2; _key2 < _len2; _key2++) {
+        params[_key2 - 2] = arguments[_key2];
       }
 
-      var result = accum / avg;
+      for (var i = 0; i <= avg; i++) {
+        accumulator += this._runFunction(func, params);
+      }
 
-      this._log(func.name, result);
+      this._log(func.name, accumulator / avg);
     }
   }]);
 
   return Performy;
 }();
 
-module.exports = new Performy();
+module.exports.Performy = new Performy();
 
 /***/ })
 /******/ ]);
