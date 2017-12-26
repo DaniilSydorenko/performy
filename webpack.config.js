@@ -1,25 +1,38 @@
 const path = require('path')
-const sourcePath = path.join(__dirname, './src');
+const sourcePath = path.join(__dirname, './lib');
+
+const babelOptions = {
+  "presets": "es2015"
+};
 
 module.exports = {
   entry: [
-    `${sourcePath}/index.ts`,
+    `${sourcePath}/index.js`,
   ],
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
   module: {
-    rules: [
-      {
-        test: /\.ts?$/,
-        use: 'ts-loader',
-        exclude: /node_modules/
-      }
-    ]
+    rules: [{
+      test: /\.js$/,
+      exclude: /node_modules/,
+      use: [
+        {
+          loader: 'babel-loader',
+          options: babelOptions
+        }
+      ]
+    }]
   },
   resolve: {
-    extensions: ['.ts', '.js']
+    extensions: ['.js']
   },
   output: {
     filename: 'index.js',
     path: path.resolve(__dirname, './')
-  }
+  },
+  devServer: {
+    hot: true,
+    inline: true,
+    port: 8181,
+    historyApiFallback: true,
+  },
 }
