@@ -1,6 +1,6 @@
 {
   "name": "performy",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "Measures time of passed functions with their arguments and returns the time of function working in milliseconds.",
   "main": "dist/index.js",
   "scripts": {

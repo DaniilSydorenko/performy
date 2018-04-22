@@ -1,5 +1,5 @@
 class Performy {
-    private readonly TEST_STARTED: string = '----- [performance test begin] -----';
+    private readonly TEST_STARTED: string = '----- [performance test start] -----';
     private readonly TEST_FINISHED: string = '----- [performance test end] -----';
     private readonly INFO_TEXT_STYLES: string = 'color: #d65a5a; font-style: italic; font-weight: bold';
     private readonly RESULT_TEXT_STYLES: string = 'color: #005cc5; font-weight: bold';

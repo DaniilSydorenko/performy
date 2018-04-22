@@ -50,7 +50,7 @@ performy.executeOnce(testFetchData);
 ###### Expected result:
 
 ```text
------ [performance test begin] -----
+----- [performance test start] -----
 Function "mathTest" fulfilled in 9.7 ms
  ----- [performance test end] -----
 ```
@@ -71,7 +71,7 @@ performy.executeAvg(testMath, 20, [112, 233]);
 ###### Expected result:
 
 ```text
------ [performance test begin] -----
+----- [performance test start] -----
 Function "mathTest" fulfilled in 1.1 ms
  ----- [performance test end] -----
 ```
