@@ -1,0 +1,5 @@
+[TAGS]:
+git tag -a v1.2.2 -m 'Version 1.2.2: '
+
+[NPM]:
+
