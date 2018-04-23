@@ -1,5 +1,6 @@
 Performy
 ========
+[![NPM](https://nodei.co/npm/performy.png)](https://nodei.co/npm/performy/)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
@@ -7,10 +8,11 @@ Performy
 - [Installation](#installation)
     - [NPM](#npm)
 - [Basic usage](#basic-usage)
-    - [Importing](#import-module)
+    - [Importing](#importing)
     - [API](#api)
         - [ExecuteOnce](#executeonce)
         - [ExecuteAvg](#executeavg)
+        - [Timer](#timer)
 - [License](#license)
 
 ## Introduction
@@ -48,7 +50,6 @@ const testFetchData = () => {
 performy.executeOnce(testFetchData);
 ```
 ###### Expected result:
-
 ```text
 ----- [performance test start] -----
 Function "mathTest" fulfilled in 9.7 ms
@@ -69,11 +70,28 @@ const testMath = (a,b) => ((a^b) * (a^b) * (a^b)) / 100;
 performy.executeAvg(testMath, 20, [112, 233]);
 ```
 ###### Expected result:
-
 ```text
 ----- [performance test start] -----
 Function "mathTest" fulfilled in 1.1 ms
  ----- [performance test end] -----
+```
+
+#### Timer:
+It is possible to use performance timer separately.
+
+```javascript
+const testMath = (a,b) => ((a^b) * (a^b) * (a^b)) / 100;
+// Set start point
+const start = performy.timer.now();
+performy.executeAvg(testMath, 20, [112, 233]);
+// Set end point
+const end = performy.timer.now();
+// Display function working time
+console.log(end - start);
+```
+###### Expected result:
+```text
+1.5999999886844307
 ```
 License
 -------

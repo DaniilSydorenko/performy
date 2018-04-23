@@ -1,6 +1,6 @@
 {
   "name": "performy",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "Measures time of passed functions with their arguments and returns the time of function working in milliseconds.",
   "main": "dist/index.js",
   "scripts": {
@@ -13,6 +13,13 @@
     "type": "git",
     "url": "git+https://github.com/DaniilSydorenko/performy.git"
   },
+  "keywords": [
+    "typescript",
+    "performance",
+    "performance-analysis",
+    "performance-monitoring",
+    "javascript"
+  ],
   "author": "Daniil Sydorenko <daniildeveloper@gmail.com",
   "license": "MIT",
   "homepage": "https://github.com/DaniilSydorenko/performy#readme",
